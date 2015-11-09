@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PresentationExamples</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="button_label">My Button</string>
+</resources>
