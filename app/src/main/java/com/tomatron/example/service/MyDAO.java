@@ -2,12 +2,18 @@ package com.tomatron.example.service;
 
 import com.tomatron.example.model.MyData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import rx.Observable;
+import rx.functions.Func1;
+import rx.functions.Func2;
 
 /**
  * My 'data-access object', an implementation of the Retrofit

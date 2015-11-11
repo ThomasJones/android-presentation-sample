@@ -31,18 +31,21 @@ public class RxConfirmDialog {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 subscriber.onNext(true);
+                                subscriber.onCompleted();
                             }
                         })
                         .setNegativeButton(R.string.dialog_negative, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 subscriber.onNext(false);
+                                subscriber.onCompleted();
                             }
                         })
                         .setOnCancelListener(new DialogInterface.OnCancelListener() {
                             @Override
                             public void onCancel(DialogInterface dialog) {
                                 subscriber.onNext(false);
+                                subscriber.onCompleted();
                             }
                         })
                         .show();
