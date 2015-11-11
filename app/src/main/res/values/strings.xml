@@ -4,4 +4,10 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="button_label">My Button</string>
+
+    <!-- Dialog -->
+    <string name="dialog_positive">Yes</string>
+    <string name="dialog_negative">No</string>
+    <string name="dialog_message">Confirm choice?</string>
+
 </resources>

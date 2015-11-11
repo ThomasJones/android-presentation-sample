@@ -104,7 +104,7 @@ public class MyViewController {
         public void onError(Throwable e) {
             // Error occurred, send to the error handler.
             mErrorHandler.handle(e);
-            mView.setText("Error!");
+            mView.setText("Error! : " + e);
         }
 
         @Override
