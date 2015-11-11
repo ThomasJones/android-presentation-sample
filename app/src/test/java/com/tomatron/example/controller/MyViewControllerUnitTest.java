@@ -18,6 +18,8 @@ import rx.schedulers.Schedulers;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +27,9 @@ import static org.mockito.Mockito.when;
  * Test for my view controller.
  */
 public class MyViewControllerUnitTest {
+
+    @InjectMocks
+    private MyViewController mViewController;       // Object under test
 
     @Mock
     private MyDAO mMockDAO;
@@ -38,8 +43,6 @@ public class MyViewControllerUnitTest {
     @Mock
     private ViewImplementer mMockView;
 
-    @InjectMocks
-    private MyViewController mViewController;
 
     @Before
     public void setUp() throws Exception {
@@ -78,4 +81,6 @@ public class MyViewControllerUnitTest {
         // THEN the error is delegated to the error handler
         verify(mMockErrorHandler).handle(exception);
     }
+
 }
+

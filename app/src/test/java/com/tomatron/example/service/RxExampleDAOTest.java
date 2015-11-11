@@ -13,6 +13,7 @@ import rx.Observable;
 import rx.schedulers.Schedulers;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -61,6 +62,26 @@ public class RxExampleDAOTest {
 
         // WHEN the 'sequential' call is made
         List<MyData> data = mRxExampleDAO.getDataSequentially("0", "1")
+                .toBlocking().first();
+
+        // THEN the expected models are in the expected order
+        assertEquals(data0, data.get(0));
+        assertEquals(data1, data.get(1));
+    }
+
+    @Test
+    public void testGetDataSimultaneously_Standalone() throws Exception {
+
+        // GIVEN a DAO that returns two data models
+        MyDAO mockDAO = mock(MyDAO.class);
+        final MyData data0 = new MyData();
+        when(mockDAO.getData("0")).thenReturn(Observable.just(data0));
+        final MyData data1 = new MyData();
+        when(mockDAO.getData("1")).thenReturn(Observable.just(data1));
+
+        // WHEN the 'simultaneous' call is made
+        RxExampleDAO daoUnderTest = new RxExampleDAO(mockDAO);
+        List<MyData> data = daoUnderTest.getDataSimultaneously("0", "1")
                 .toBlocking().first();
 
         // THEN the expected models are in the expected order

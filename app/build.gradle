@@ -10,6 +10,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled = true      // this shouldn't need to be true, but issues with Mockito are requiring it.
+        testInstrumentationRunner "com.tomatron.example.TestRunner"
     }
     buildTypes {
         release {
@@ -49,7 +51,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
     androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
-    androidTestCompile('org.mockito:mockito-core:1.9.5',
+    androidTestCompile('org.mockito:mockito-core:1.10.19',
             'com.google.dexmaker:dexmaker-mockito:1.1',
             'com.google.dexmaker:dexmaker:1.1')
+
+    // Espresso
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.0') {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
 }
